@@ -34,7 +34,7 @@ ai-quantum-backend-selection/
 ├── .gitignore
 ├── .env.example
 ├── notebooks/
-│   └── ai_quantum_systems_workload_orchestration_v9_6_live_ibm_required.ipynb
+│   └── ai_quantum_systems_workload_orchestration_live_ibm_required.ipynb
 ├── outputs/
 │   └── README.md
 └── docs/
