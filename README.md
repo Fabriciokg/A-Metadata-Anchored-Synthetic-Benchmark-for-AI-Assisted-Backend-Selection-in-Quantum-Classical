@@ -28,7 +28,6 @@ The benchmark is designed for methodological evaluation. It does not claim produ
 ```text
 ai-quantum-backend-selection/
 ├── README.md
-├── README.pt-BR.md
 ├── LICENSE
 ├── requirements.txt
 ├── environment.yml
@@ -36,8 +35,6 @@ ai-quantum-backend-selection/
 ├── .env.example
 ├── notebooks/
 │   └── ai_quantum_systems_workload_orchestration_v9_6_live_ibm_required.ipynb
-├── paper/
-│   └── A_Metadata_Anchored_Synthetic_Benchmark_for_AI_Assisted_Backend_Selection_in_Quantum_Classical_Workflows.pdf
 ├── outputs/
 │   └── README.md
 └── docs/
