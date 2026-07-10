@@ -5,7 +5,7 @@ This folder is intentionally lightweight.
 The notebook generates reproducibility artifacts in:
 
 ```text
-outputs_ai_quantum_v9_6/
+outputs_ai_quantum/
 ```
 
 Typical generated artifacts include:
