@@ -182,7 +182,7 @@ jupyter notebook
 Open:
 
 ```text
-notebooks/ai_quantum_systems_workload_orchestration_v9_6_live_ibm_required.ipynb
+notebooks/ai_quantum_systems_workload_orchestration_live_ibm_required.ipynb
 ```
 
 Run all cells from top to bottom.
