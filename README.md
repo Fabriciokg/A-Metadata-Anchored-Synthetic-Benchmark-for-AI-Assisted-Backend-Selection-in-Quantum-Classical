@@ -1,25 +1,29 @@
 # Metadata-Anchored Synthetic Benchmark for AI-Assisted Backend Selection in Quantum-Classical Workflows
 
-This repository contains the notebook, paper, and reproducibility material for the study:
+This repository provides the notebook, documentation, and reproducibility materials for the study:
 
 **A Metadata-Anchored Synthetic Benchmark for AI-Assisted Backend Selection in Quantum-Classical Workflows**
 
-The project evaluates AI-assisted backend selection for quantum-classical workflows using a controlled synthetic benchmark partially anchored in IBM/Qiskit Runtime backend metadata.
+The project investigates AI-assisted backend selection for quantum-classical workflows through a controlled synthetic benchmark partially anchored in metadata obtained from IBM Quantum and Qiskit Runtime.
 
-The benchmark is designed for methodological evaluation. It does not claim production-level scheduling performance, quantum advantage, or empirical superiority on production QPUs. The main purpose is to provide a reproducible framework for comparing backend-selection strategies under controlled workload, backend, operational, and decision-profile assumptions.
+The benchmark is intended for methodological evaluation. It does not claim production-level scheduling performance, quantum advantage, or empirical superiority on production quantum processing units. Its primary goal is to provide a transparent and reproducible framework for comparing backend-selection strategies under controlled assumptions about workloads, backend characteristics, operational conditions, and user decision profiles.
 
 ---
 
-## What this repository contains
+## Repository contents
 
-- A complete Jupyter notebook for generating the synthetic benchmark.
-- IBM/Qiskit Runtime metadata anchoring for superconducting QPU profiles.
-- Runtime and expected-fidelity prediction models.
-- Backend recommendation classification.
-- Final backend ranking and utility-regret evaluation.
-- Comparisons with heuristic, weighted utility, TOPSIS, Pareto, and utility-ranker baselines.
-- Ablation, robustness, sensitivity, and external-plausibility checks.
-- The associated paper PDF.
+This repository includes:
+
+* a complete Jupyter notebook for generating and evaluating the synthetic benchmark;
+* optional IBM Quantum and Qiskit Runtime metadata anchoring for superconducting QPU profiles;
+* runtime and expected-fidelity prediction models;
+* backend recommendation classification models;
+* backend ranking and utility-regret evaluation;
+* comparisons with heuristic, weighted-utility, TOPSIS, Pareto, and learned utility-ranking baselines;
+* ablation, robustness, sensitivity, subgroup, and external-plausibility analyses;
+* reproducibility, credential-management, and security documentation.
+
+The associated manuscript may be added to the repository or linked from a release after publication.
 
 ---
 
@@ -43,107 +47,195 @@ ai-quantum-backend-selection/
     └── SECURITY.md
 ```
 
+The `outputs/` directory is reserved for documentation or selected lightweight examples. Full experimental artifacts are generated locally in the directory:
+
+```text
+outputs_ai_quantum/
+```
+
 ---
 
 ## Scientific scope
 
-This project studies backend selection as a multicriteria decision problem in quantum-classical workflows.
+This project formulates backend selection as a multicriteria decision problem in quantum-classical workflows.
 
-A backend-selection policy must consider several criteria simultaneously, including:
+A backend-selection policy may need to consider several criteria simultaneously, including:
 
-- execution time;
-- expected fidelity;
-- cost;
-- queue conditions;
-- backend availability;
-- failure probability;
-- noise and calibration characteristics;
-- device capacity;
-- whether real hardware execution is required.
+* estimated execution time;
+* expected fidelity;
+* execution cost;
+* queue conditions;
+* backend availability;
+* failure probability;
+* noise and calibration characteristics;
+* device capacity;
+* workload size and circuit requirements;
+* user preferences and decision profiles;
+* whether execution on real quantum hardware is required.
 
-The notebook generates synthetic workload-backend pairs across multiple quantum algorithm families and execution modalities. The superconducting QPU profile is partially anchored in live IBM/Qiskit Runtime metadata when valid IBM credentials are provided.
+The notebook generates synthetic workload-backend pairs across multiple quantum algorithm families and execution modalities.
 
-The benchmark evaluates the problem as an end-to-end decision pipeline:
+When valid IBM Quantum credentials are provided, selected attributes of the superconducting backend profiles are partially anchored in live IBM Quantum and Qiskit Runtime metadata. This anchoring is intended to improve external plausibility; it does not transform the synthetic benchmark into a production execution-log dataset.
 
-1. Synthetic workload and backend generation.
-2. Workload-backend pairing.
-3. External IBM/Qiskit metadata anchoring.
-4. Operational modeling of runtime, fidelity, queue, cost, and failure probability.
-5. Synthetic multicriteria recommendation policy.
-6. Regression models for runtime and expected fidelity.
-7. Recommendation classification.
-8. Backend ranking.
-9. Utility-regret evaluation.
-10. Baseline comparison, ablation, robustness, sensitivity, and plausibility checks.
+The complete evaluation pipeline includes:
+
+1. synthetic workload generation;
+2. synthetic backend-profile generation;
+3. construction of workload-backend candidate pairs;
+4. optional IBM Quantum metadata collection and anchoring;
+5. operational modeling of runtime, fidelity, queue conditions, cost, availability, and failure probability;
+6. generation of recommendation labels through a synthetic multicriteria utility policy;
+7. regression models for runtime and expected fidelity;
+8. backend recommendation classification;
+9. backend ranking;
+10. top-k recommendation evaluation;
+11. utility-regret analysis;
+12. comparison with heuristic and multicriteria baselines;
+13. ablation, robustness, sensitivity, subgroup, and external-plausibility analyses.
 
 ---
 
-## Important limitation
+## Methodological interpretation
 
-The recommendation labels are generated by a synthetic multicriteria utility function. Therefore, the supervised models learn to approximate a controlled synthetic decision policy, not a ground-truth production scheduler learned from real execution logs.
+The benchmark should be interpreted as a controlled test environment for studying AI-assisted decision support.
 
-IBM/Qiskit Runtime metadata are used to improve the external plausibility of selected superconducting backend attributes. They do not replace validation using production-scale QPU execution logs.
+The central research question is not whether a model can reproduce the behavior of a real production scheduler. Instead, the benchmark evaluates whether different learning and decision strategies can recover and generalize a formally defined backend-selection policy under controlled variation in:
 
-Credentialed hardware execution is disabled by default. The notebook performs local Qiskit Aer sanity checks and metadata-based plausibility checks, but it should not be interpreted as a full hardware-validation study.
+* workloads;
+* backend properties;
+* operational conditions;
+* noise levels;
+* available metadata;
+* decision preferences;
+* evaluation scenarios.
+
+This controlled design enables systematic experiments that would be difficult to reproduce using only dynamic production QPU environments.
+
+---
+
+## Important limitations
+
+### Synthetic recommendation labels
+
+The recommendation labels are generated by a synthetic multicriteria utility function.
+
+Consequently, the supervised models learn to approximate a controlled synthetic decision policy rather than a ground-truth production scheduler inferred from real execution histories.
+
+Strong predictive performance should therefore be interpreted as evidence that a model can approximate the benchmark policy—not as proof that it will optimize production quantum workloads.
+
+### Partial metadata anchoring
+
+IBM Quantum and Qiskit Runtime metadata are used to improve the external plausibility of selected superconducting backend attributes.
+
+The metadata anchoring does not replace validation with:
+
+* production-scale execution logs;
+* repeated hardware experiments;
+* historical queue traces;
+* real billing information;
+* longitudinal calibration records;
+* operational data from multiple quantum providers.
+
+### Hardware execution
+
+Credentialed QPU execution is disabled by default.
+
+The notebook performs:
+
+* local circuit sanity checks using Qiskit Aer;
+* metadata-based plausibility checks;
+* optional collection of live IBM Quantum backend information.
+
+Unless the user explicitly enables and completes hardware jobs, the benchmark must not be described as a full hardware-validation study.
+
+### Dynamic external metadata
+
+IBM Quantum backend availability, calibration data, queue information, and accessible devices may change over time.
+
+As a result, two executions performed on different dates may use different metadata snapshots and may not produce numerically identical results, even when the same random seed is used.
 
 ---
 
 ## Requirements
 
-Use Python 3.10 or newer.
+Python 3.10 or newer is recommended.
 
-Install the dependencies with:
+Install the required dependencies with:
 
 ```bash
 pip install -r requirements.txt
 ```
 
-The main packages are:
+The main dependencies include:
 
-- `numpy`
-- `pandas`
-- `matplotlib`
-- `scikit-learn`
-- `qiskit`
-- `qiskit-aer`
-- `qiskit-ibm-runtime`
-- `python-dotenv`
-- `jupyter`
+* `numpy`;
+* `pandas`;
+* `matplotlib`;
+* `scikit-learn`;
+* `qiskit`;
+* `qiskit-aer`;
+* `qiskit-ibm-runtime`;
+* `python-dotenv`;
+* `jupyter`.
+
+A Conda-compatible environment specification is also provided:
+
+```bash
+conda env create -f environment.yml
+conda activate ai-quantum-backend-selection
+```
+
+The exact environment name depends on the `name` field defined in `environment.yml`.
 
 ---
 
 ## IBM Quantum credentials
 
-The notebook requires IBM Quantum / Qiskit Runtime credentials to collect live IBM metadata.
+IBM Quantum credentials are required only when collecting live IBM Quantum and Qiskit Runtime metadata.
 
-You need two values:
+The notebook uses two environment variables:
 
-1. `IBM_QUANTUM_TOKEN`: your IBM Cloud API key.
-2. `IBM_QUANTUM_INSTANCE`: your IBM Quantum Runtime service instance CRN.
+1. `IBM_QUANTUM_TOKEN`: an IBM Cloud API key;
+2. `IBM_QUANTUM_INSTANCE`: the Cloud Resource Name of the IBM Quantum Runtime service instance.
 
-Never commit these values to GitHub, GitLab, or any public repository.
+Never commit credentials to GitHub, GitLab, or any other public repository.
 
-Create a local `.env` file from the example file:
+Create a local `.env` file from the provided example:
 
 ```bash
 cp .env.example .env
 ```
 
-Then edit `.env`:
+On Windows PowerShell, you may use:
 
-```bash
+```powershell
+Copy-Item .env.example .env
+```
+
+Edit the local `.env` file:
+
+```text
 IBM_QUANTUM_TOKEN=your_ibm_cloud_api_key_here
 IBM_QUANTUM_INSTANCE=your_ibm_quantum_runtime_crn_here
 ```
 
-Alternatively, export the variables in your terminal:
+Alternatively, define the variables in the terminal.
+
+Linux or macOS:
 
 ```bash
 export IBM_QUANTUM_TOKEN="your_ibm_cloud_api_key_here"
 export IBM_QUANTUM_INSTANCE="your_ibm_quantum_runtime_crn_here"
 ```
 
-See the detailed credential guide:
+Windows PowerShell:
+
+```powershell
+$env:IBM_QUANTUM_TOKEN="your_ibm_cloud_api_key_here"
+$env:IBM_QUANTUM_INSTANCE="your_ibm_quantum_runtime_crn_here"
+```
+
+For detailed instructions, see:
 
 ```text
 docs/IBM_QUANTUM_CREDENTIALS.md
@@ -151,17 +243,18 @@ docs/IBM_QUANTUM_CREDENTIALS.md
 
 ---
 
-## How to obtain the IBM Quantum API key and Runtime instance CRN
+## Obtaining IBM Quantum credentials
 
-In summary:
+The general procedure is:
 
-1. Create or access an IBM Cloud account.
-2. Open IBM Quantum Platform.
-3. Create or select an IBM Quantum service instance.
-4. Copy your IBM Cloud API key.
-5. Copy the Cloud Resource Name (CRN) of the IBM Quantum Runtime instance.
-6. Save both values locally in `.env` or as environment variables.
-7. Do not upload these credentials to the repository.
+1. create or access an IBM Cloud account;
+2. access the IBM Quantum Platform or IBM Cloud catalog;
+3. create or select an IBM Quantum service instance;
+4. generate or retrieve an IBM Cloud API key;
+5. copy the Cloud Resource Name of the IBM Quantum Runtime instance;
+6. store both values locally in `.env` or as environment variables;
+7. verify that `.env` and credential-related files are excluded by `.gitignore`;
+8. never include credentials in notebooks, outputs, screenshots, logs, or commits.
 
 For a complete step-by-step guide, read:
 
@@ -173,7 +266,7 @@ docs/IBM_QUANTUM_CREDENTIALS.md
 
 ## Running the notebook
 
-After installing dependencies and configuring credentials, start Jupyter:
+After installing the dependencies, start Jupyter:
 
 ```bash
 jupyter notebook
@@ -187,7 +280,24 @@ notebooks/ai_quantum_systems_workload_orchestration_live_ibm_required.ipynb
 
 Run all cells from top to bottom.
 
-The notebook prompts for IBM credentials if the required environment variables are not already defined.
+When the required environment variables are not available, the notebook may request the IBM credentials interactively.
+
+Interactive credential entry should only be used in trusted local environments. Avoid entering credentials into shared notebooks, public notebook services, recorded sessions, or environments whose access controls are unknown.
+
+---
+
+## Running without live IBM metadata
+
+The benchmark architecture is primarily synthetic, but the current notebook may require IBM credentials to complete its metadata-anchoring stage.
+
+For fully offline reproducibility, a future release should include one of the following:
+
+* a sanitized metadata snapshot;
+* a documented offline fallback;
+* a cached backend catalog without account identifiers;
+* a configuration option that explicitly disables live metadata collection.
+
+When using a stored metadata snapshot, record its collection date and provenance.
 
 ---
 
@@ -196,44 +306,79 @@ The notebook prompts for IBM credentials if the required environment variables a
 The notebook writes generated artifacts to:
 
 ```text
-outputs_ai_quantum_v9_6/
+outputs_ai_quantum/
 ```
 
 Typical outputs include:
 
-- generated dataset;
-- backend catalog;
-- metadata-anchoring summaries;
-- real-validation summaries;
-- regression predictions;
-- classification predictions;
-- backend-ranking outputs;
-- utility-regret summaries;
-- baseline-comparison tables;
-- subgroup metrics;
-- ablation results;
-- sensitivity analyses;
-- figures used in the paper.
+* synthetic workload-backend datasets;
+* generated and calibrated backend catalogs;
+* IBM metadata-anchoring summaries;
+* metadata-collection status files;
+* real-validation and plausibility summaries;
+* runtime regression predictions;
+* expected-fidelity regression predictions;
+* recommendation-classification predictions;
+* out-of-fold predictions;
+* backend-ranking results;
+* top-k recommendation metrics;
+* utility-regret summaries;
+* baseline-comparison tables;
+* subgroup metrics;
+* workload-level cross-validation results;
+* feature-ablation results;
+* robustness and sensitivity analyses;
+* figures used in the associated study;
+* artifact inventories and execution metadata.
 
-The `outputs/` folder in this repository is intentionally kept lightweight. Generated files can be reproduced by running the notebook.
+The generated output directory should remain excluded from version control unless selected files have been deliberately reviewed, sanitized, and approved for publication.
+
+Recommended `.gitignore` entries include:
+
+```gitignore
+outputs_ai_quantum/
+outputs_ai_quantum_v*/
+```
 
 ---
 
-## Reproducibility notes
+## Reproducibility
 
-The benchmark uses controlled synthetic generation and fixed experimental procedures. However, live IBM metadata may change over time because backend availability, calibration data, queue status, and accessible devices are dynamic.
+The benchmark uses controlled synthetic data generation, fixed random seeds, and documented experimental procedures.
 
-For reproducibility, report:
+However, exact numerical reproduction may still depend on:
 
-- date and time of execution;
-- Python version;
-- package versions;
-- IBM Quantum plan/access level;
-- available IBM backends at execution time;
-- whether live metadata were successfully collected;
-- whether hardware execution was disabled or enabled.
+* Python version;
+* package versions;
+* operating system;
+* hardware architecture;
+* random-number-generator implementation;
+* parallel execution behavior;
+* available IBM Quantum backends;
+* IBM Quantum access level;
+* backend calibration state;
+* metadata collection time;
+* whether live metadata collection succeeds;
+* whether hardware execution is enabled.
 
-See:
+For every reported experiment, record:
+
+* repository commit or release identifier;
+* notebook version;
+* date and time of execution;
+* random seed;
+* Python version;
+* package versions;
+* operating system;
+* IBM Quantum plan or access level;
+* accessible IBM Quantum backends;
+* metadata collection timestamp;
+* whether metadata anchoring succeeded;
+* whether cached or live metadata were used;
+* whether QPU execution was disabled or enabled;
+* output directory or release containing the generated artifacts.
+
+For additional guidance, see:
 
 ```text
 docs/REPRODUCIBILITY.md
@@ -241,21 +386,58 @@ docs/REPRODUCIBILITY.md
 
 ---
 
-## Security warning
+## Recommended metadata snapshot
 
-Do not commit:
+For stronger reproducibility, an experimental release should include a sanitized snapshot of the backend metadata used in the reported results.
 
-- `.env`;
-- IBM API keys;
-- IBM Runtime CRNs if you consider them sensitive;
-- local Qiskit account files;
-- cached credential files;
-- private execution logs;
-- personal account metadata.
+The snapshot should include only the attributes required by the benchmark and should exclude:
 
-The `.gitignore` included in this repository is configured to reduce the risk of accidental credential commits.
+* API keys;
+* account identifiers;
+* service-instance identifiers;
+* private Cloud Resource Names;
+* personal account information;
+* job identifiers that reveal private activity;
+* unnecessary provider-specific account metadata.
 
-See:
+A sanitized snapshot makes it possible to distinguish between:
+
+1. reproduction of the original reported experiment; and
+2. replication using newly collected live metadata.
+
+---
+
+## Security
+
+Do not commit or publish:
+
+* `.env`;
+* IBM Cloud API keys;
+* authentication tokens;
+* private IBM Runtime CRNs;
+* local Qiskit account files;
+* cached credential files;
+* private execution logs;
+* account identifiers;
+* service-instance identifiers;
+* unreviewed notebook outputs;
+* screenshots containing credentials or account metadata.
+
+Before publishing an executed notebook, inspect all outputs for:
+
+* tokens;
+* CRNs;
+* account identifiers;
+* provider messages;
+* backend-access information;
+* job URLs;
+* local file paths;
+* usernames;
+* personal metadata.
+
+The `.gitignore` file reduces the risk of accidental disclosure, but it does not replace manual review.
+
+For additional guidance, see:
 
 ```text
 docs/SECURITY.md
@@ -263,42 +445,84 @@ docs/SECURITY.md
 
 ---
 
-## Minimal local test
+## Minimal environment test
 
-After installing dependencies, you can test the environment with:
+After installing the dependencies, test the environment with:
 
 ```bash
 python - <<'PY'
-import qiskit
-import qiskit_aer
-import qiskit_ibm_runtime
 import numpy
 import pandas
 import sklearn
+import qiskit
+import qiskit_aer
+import qiskit_ibm_runtime
+
 print("Environment OK")
+print("NumPy:", numpy.__version__)
+print("pandas:", pandas.__version__)
+print("scikit-learn:", sklearn.__version__)
+print("Qiskit:", qiskit.__version__)
+print("Qiskit Aer:", qiskit_aer.__version__)
+print("Qiskit IBM Runtime:", qiskit_ibm_runtime.__version__)
 PY
 ```
 
 ---
 
+## Responsible use and claims
+
+When describing results produced with this repository, use language consistent with the benchmark design.
+
+Appropriate descriptions include:
+
+* “synthetic benchmark partially anchored in IBM Quantum metadata”;
+* “metadata-informed evaluation”;
+* “controlled backend-selection benchmark”;
+* “local Qiskit Aer validation”;
+* “external-plausibility analysis”;
+* “methodological evaluation of backend-selection strategies.”
+
+Avoid unsupported descriptions such as:
+
+* “validated on production IBM QPUs,” unless credentialed hardware executions were actually completed and documented;
+* “production-ready scheduler”;
+* “optimal quantum backend selector”;
+* “quantum advantage”;
+* “real-world superiority”;
+* “ground-truth scheduling model”;
+* “provider-independent validation,” unless multiple providers and real execution data were evaluated.
+
+---
+
 ## Citation
 
-If you use this repository or adapt the benchmark, please cite the associated paper:
+If you use this repository, adapt the benchmark, or build upon its methodology, cite the associated paper or repository release.
+
+Until the final publication metadata are available, the following placeholder may be used:
 
 ```bibtex
 @misc{metadata_anchored_backend_selection,
   title        = {A Metadata-Anchored Synthetic Benchmark for AI-Assisted Backend Selection in Quantum-Classical Workflows},
-  howpublished = {Repository and reproducibility notebook},
+  author       = {{Author information to be added}},
+  year         = {2026},
+  howpublished = {Software repository and reproducibility notebook},
   note         = {Synthetic benchmark for AI-assisted backend selection in quantum-classical workflows}
 }
 ```
 
-Replace this placeholder BibTeX entry with the final publication metadata when available.
+Replace the placeholder author, year, publication venue, DOI, URL, and other bibliographic fields when the final publication information becomes available.
 
 ---
 
 ## License
 
-This repository is released under the MIT License. See `LICENSE`.
+This repository is released under the MIT License. See:
 
-If your institution or venue requires a different license, replace `LICENSE` before publishing the repository.
+```text
+LICENSE
+```
+
+Review the licensing requirements of all datasets, software dependencies, institutional policies, and publication venues before distributing modified versions of the repository.
+
+If a different repository license is required, update both the `LICENSE` file and this README before publication.
