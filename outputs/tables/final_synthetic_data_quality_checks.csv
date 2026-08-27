@@ -1,0 +1,34 @@
+check,status,value,details
+required_column::workload_id,pass,True,required column present
+required_column::algorithm,pass,True,required column present
+required_column::backend,pass,True,required column present
+required_column::backend_family,pass,True,required column present
+required_column::num_qubits,pass,True,required column present
+required_column::circuit_depth,pass,True,required column present
+required_column::two_qubit_gates,pass,True,required column present
+required_column::shots,pass,True,required column present
+required_column::total_runtime_sec,pass,True,required column present
+required_column::expected_fidelity,pass,True,required column present
+required_column::failure_probability,pass,True,required column present
+required_column::decision_utility,pass,True,required column present
+required_column::recommended_execution,pass,True,required column present
+required_column::selected_backend,pass,True,required column present
+range::expected_fidelity,pass,100.0,"percentage within [0.0, 1.0]"
+range::failure_probability,pass,100.0,"percentage within [0.0, 1.0]"
+range::recommendation_probability_true,pass,100.0,"percentage within [0.0, 1.0]"
+range::backend_uptime,pass,100.0,"percentage within [0.0, 1.0]"
+range::coupling_density,pass,100.0,"percentage within [0.0, 1.0]"
+non_negative::num_qubits,pass,100.0,percentage of non-negative values
+non_negative::circuit_depth,pass,100.0,percentage of non-negative values
+non_negative::two_qubit_gates,pass,100.0,percentage of non-negative values
+non_negative::shots,pass,100.0,percentage of non-negative values
+non_negative::queue_time_sec,pass,100.0,percentage of non-negative values
+non_negative::total_cost,pass,100.0,percentage of non-negative values
+non_negative::execution_time_sec,pass,100.0,percentage of non-negative values
+non_negative::total_runtime_sec,pass,100.0,percentage of non-negative values
+non_negative::single_qubit_error,pass,100.0,percentage of non-negative values
+non_negative::two_qubit_error,pass,100.0,percentage of non-negative values
+non_negative::readout_error,pass,100.0,percentage of non-negative values
+non_negative::decision_utility,pass,100.0,percentage of non-negative values
+selected_backend_exactly_one_by_workload,pass,100.0,percentage of workloads with exactly one selected backend
+fallback_only_when_no_acceptable_backend,pass,100.0,percentage of workloads where fallback coincides with no acceptable backend

@@ -1,0 +1,7 @@
+strategy_family,examples,test_time_information,explicit_synthetic_policy_weights,direct_utility_target_used_for_training,learned_acceptability_gating,interpretive_role
+single_criterion_heuristic,min runtime; max fidelity; min cost; min failure,one observed or predicted operational criterion,False,False,False,weak baseline; descriptive comparison
+probability_only_oof_learning,ML_OOF_probability_only_selection,workload/backend/state features plus predicted runtime/fidelity and recommendation probability,False,False,True,learned baseline without explicit w_* at final selection
+policy_informed_weighted_reference,policy_informed_weighted_no_classifier; policy-informed TOPSIS,predicted/observed criteria plus explicit decision-profile w_* weights,True,False,False,policy-informed reference
+oof_classifier_gated_policy_weighted,runtime predictor -> fidelity predictor -> classifier gate -> policy-weighted ranker,"predicted runtime/fidelity, observed operational covariates, recommendation probability, explicit w_* weights",True,False,True,primary hybrid selector; policy-informed at final ranking
+direct_learned_utility,RF direct utility ranker; Gradient Boosting direct utility ranker,features plus OOF/predicted operational quantities,False,True,False,privileged direct-target learned comparator
+unweighted_pareto,pareto_dominance_unweighted_predicted,multicriteria operational quantities without w_* weights,False,False,False,weight-free multicriteria baseline

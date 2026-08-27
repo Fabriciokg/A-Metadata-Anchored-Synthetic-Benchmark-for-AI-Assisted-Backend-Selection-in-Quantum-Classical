@@ -1,0 +1,5 @@
+circuit,qubits,purpose
+GHZ_3,3,entanglement-sensitive sanity check
+GHZ_5,5,larger entanglement sanity check
+QAOA_like_4,4,small variational-workload proxy
+HAM_like_4,4,small Hamiltonian-like workload proxy

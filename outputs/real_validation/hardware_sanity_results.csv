@@ -1,0 +1,2 @@
+status,reason,shots,max_circuits
+skipped_by_default,Open-science execution avoids credentialed hardware usage unless explicitly enabled.,256,3

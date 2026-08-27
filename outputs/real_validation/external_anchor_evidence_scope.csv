@@ -1,0 +1,2 @@
+anchor_evidence_scope,live_ibm_runtime_available,cached_ibm_runtime_available,frozen_snapshot_available,static_reference_used,qiskit_snapshot_used,source_values,collection_status_values,evidence_level_values,anchor_priority_values,recommended_claim,paper_wording
+live_ibm_qiskit_runtime_metadata,True,False,False,False,False,ibm_qiskit_runtime_live_metadata,ok,live_runtime_metadata,,partially anchored in live IBM/Qiskit Runtime metadata,Live IBM/Qiskit Runtime metadata were available in this run and were used as the superconducting QPU reference.
