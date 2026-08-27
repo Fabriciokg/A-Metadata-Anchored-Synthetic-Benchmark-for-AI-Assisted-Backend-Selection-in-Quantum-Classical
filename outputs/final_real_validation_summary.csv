@@ -1,5 +1,0 @@
-component,status,rows,score,output_file,interpretation,live_ibm_runtime_available,recommended_claim
-synthetic_data_internal_quality_checks,executed,33,100.0,outputs_ai_quantum_open_science/real_validation/synthetic_data_quality_checks.csv,"Checks schema, ranges, non-negative variables, and selected-backend consistency.",,
-qiskit_aer_small_circuit_execution,executed_with_errors,1,0.0,outputs_ai_quantum_open_science/real_validation/qiskit_aer_small_circuit_runs.csv,Local simulator execution of representative small circuits.,,
-external_qpu_metadata,live_ibm_qiskit_runtime_metadata,3,,outputs_ai_quantum_open_science/real_validation/external_qpu_metadata.csv,Live IBM/Qiskit Runtime metadata were available in this run and were used as the superconducting QPU reference.,True,partially anchored in live IBM/Qiskit Runtime metadata
-external_vs_synthetic_qpu_range_overlap_plausibility,executed,16,25.0,outputs_ai_quantum_open_science/real_validation/real_vs_synthetic_qpu_ranges.csv,Live IBM/Qiskit Runtime metadata range-overlap plausibility comparison; this is not production-QPU execution validation.,True,partially anchored in live IBM/Qiskit Runtime metadata
