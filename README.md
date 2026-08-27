@@ -29,23 +29,34 @@ The associated manuscript may be added to the repository or linked from a releas
 
 ## Repository structure
 
-```text
-ai-quantum-backend-selection/
+A-Metadata-Anchored-Synthetic-Benchmark-for-AI-Assisted-Backend-Selection-in-Quantum-Classical/
+│
 ├── README.md
+├── CHANGELOG.md
 ├── LICENSE
 ├── requirements.txt
 ├── environment.yml
 ├── .gitignore
 ├── .env.example
+│
 ├── notebooks/
 │   └── ai_quantum_systems_workload_orchestration_live_ibm_required.ipynb
-├── outputs/
-│   └── README.md
-└── docs/
-    ├── IBM_QUANTUM_CREDENTIALS.md
-    ├── REPRODUCIBILITY.md
-    └── SECURITY.md
-```
+│
+├── docs/
+│   ├── IBM_QUANTUM_CREDENTIALS.md
+│   ├── REPRODUCIBILITY.md
+│   ├── RESULTS_AND_EVIDENCE.md
+│   └── SECURITY.md
+│
+└── outputs/
+    ├── README.md
+    ├── MANIFEST.md
+    ├── SHA256SUMS.txt
+    │
+    ├── data/
+    ├── figures/
+    ├── real_validation/
+    └── tables/
 
 The `outputs/` directory is reserved for documentation or selected lightweight examples. Full experimental artifacts are generated locally in the directory:
 
