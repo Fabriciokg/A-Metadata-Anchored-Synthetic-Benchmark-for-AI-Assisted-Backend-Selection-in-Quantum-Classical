@@ -29,8 +29,8 @@ The associated manuscript may be added to the repository or linked from a releas
 
 ## Repository structure
 
-A-Metadata-Anchored-Synthetic-Benchmark-for-AI-Assisted-Backend-Selection-in-Quantum-Classical/
-│
+```text
+ai-quantum-backend-selection/
 ├── README.md
 ├── CHANGELOG.md
 ├── LICENSE
@@ -38,31 +38,48 @@ A-Metadata-Anchored-Synthetic-Benchmark-for-AI-Assisted-Backend-Selection-in-Qua
 ├── environment.yml
 ├── .gitignore
 ├── .env.example
-│
 ├── notebooks/
 │   └── ai_quantum_systems_workload_orchestration_live_ibm_required.ipynb
-│
-├── docs/
-│   ├── IBM_QUANTUM_CREDENTIALS.md
-│   ├── REPRODUCIBILITY.md
-│   ├── RESULTS_AND_EVIDENCE.md
-│   └── SECURITY.md
-│
-└── outputs/
-    ├── README.md
-    ├── MANIFEST.md
-    ├── SHA256SUMS.txt
-    │
-    ├── data/
-    ├── figures/
-    ├── real_validation/
-    └── tables/
-
-The `outputs/` directory is reserved for documentation or selected lightweight examples. Full experimental artifacts are generated locally in the directory:
-
-```text
-outputs_ai_quantum/
+├── outputs/
+│   ├── README.md
+│   ├── MANIFEST.md
+│   ├── SHA256SUMS.txt
+│   ├── data/
+│   │   └── README.md
+│   ├── figures/
+│   │   └── anchor_alpha_distance_sensitivity.png
+│   ├── real_validation/
+│   │   └── *.csv
+│   └── tables/
+│       └── *.csv
+└── docs/
+    ├── IBM_QUANTUM_CREDENTIALS.md
+    ├── REPRODUCIBILITY.md
+    ├── RESULTS_AND_EVIDENCE.md
+    └── SECURITY.md
 ```
+
+The `outputs/` directory contains the curated, reviewed open-science artifacts selected for publication. The supplied export was generated under `outputs_ai_quantum_open_science/`; that local generation directory should remain outside version control. Other notebook revisions may use different local output-directory names.
+
+---
+
+## Published open-science snapshot
+
+The curated output snapshot included in this repository documents the reported benchmark realization and separates frozen-reference evidence from current-run IBM/Qiskit Runtime metadata.
+
+The published dataset summary records:
+
+* 700 synthetic workloads;
+* 5 backend candidates per workload;
+* 3,500 workload-backend pairs;
+* 6 algorithm profiles;
+* 6 decision profiles.
+
+For the external metadata analysis, the reproducibility anchor uses a frozen historical IBM/Qiskit Runtime snapshot dated **2026-07-28**. A separate authenticated live metadata collection was recorded on **2026-08-26** for comparison. The live metadata stage did not submit hardware jobs. The hardware sanity-check protocol in the published output was skipped by default.
+
+The external range-overlap diagnostics report 37.5% overlap for the frozen snapshot and 25.0% for the live comparison. These values are descriptive metadata-level plausibility diagnostics only; they are not model-accuracy scores and must not be interpreted as production-QPU validation.
+
+The complete published evidence set is organized under `outputs/`; see `outputs/README.md` and `docs/RESULTS_AND_EVIDENCE.md` for interpretation.
 
 ---
 
@@ -299,56 +316,43 @@ Interactive credential entry should only be used in trusted local environments. 
 
 ## Running without live IBM metadata
 
-The benchmark architecture is primarily synthetic, but the current notebook may require IBM credentials to complete its metadata-anchoring stage.
+The benchmark architecture is primarily synthetic. The public results now include a sanitized frozen IBM/Qiskit Runtime reference used for the reported reproducibility anchor, while authenticated live metadata are kept as a separate comparison stream.
 
-For fully offline reproducibility, a future release should include one of the following:
-
-* a sanitized metadata snapshot;
-* a documented offline fallback;
-* a cached backend catalog without account identifiers;
-* a configuration option that explicitly disables live metadata collection.
-
-When using a stored metadata snapshot, record its collection date and provenance.
+Live IBM Quantum metadata collection still requires credentials. For offline reproduction, use the frozen reference and avoid any notebook stage that explicitly requests a live Runtime connection. Always record whether the experiment used frozen, cached, or live metadata, together with the corresponding collection or snapshot date.
 
 ---
 
 ## Expected outputs
 
-The notebook writes generated artifacts to:
+The supplied open-science export was generated locally under:
 
 ```text
-outputs_ai_quantum/
+outputs_ai_quantum_open_science/
 ```
 
-Typical outputs include:
+The reviewed publication subset is committed under:
 
-* synthetic workload-backend datasets;
-* generated and calibrated backend catalogs;
-* IBM metadata-anchoring summaries;
-* metadata-collection status files;
-* real-validation and plausibility summaries;
-* runtime regression predictions;
-* expected-fidelity regression predictions;
-* recommendation-classification predictions;
-* out-of-fold predictions;
-* backend-ranking results;
-* top-k recommendation metrics;
-* utility-regret summaries;
-* baseline-comparison tables;
-* subgroup metrics;
-* workload-level cross-validation results;
-* feature-ablation results;
-* robustness and sensitivity analyses;
-* figures used in the associated study;
-* artifact inventories and execution metadata.
+```text
+outputs/
+├── figures/
+├── real_validation/
+├── tables/
+├── MANIFEST.md
+└── SHA256SUMS.txt
+```
 
-The generated output directory should remain excluded from version control unless selected files have been deliberately reviewed, sanitized, and approved for publication.
+Typical artifacts include calibrated backend catalogs, frozen-versus-live metadata comparisons, external-plausibility summaries, runtime and fidelity model results, recommendation-classification results, backend-ranking and utility-regret metrics, group-validation summaries, feature ablations, subgroup analyses, multi-seed robustness results, sensitivity analyses, and selected figures.
+
+Large, transient, credential-dependent, cached, or unreviewed local run directories should remain excluded from version control. Only deliberately reviewed and sanitized artifacts should be copied into `outputs/`.
 
 Recommended `.gitignore` entries include:
 
 ```gitignore
 outputs_ai_quantum/
 outputs_ai_quantum_v*/
+outputs_ai_quantum_open_science/
+outputs_ai_quantum_ibm_credential_comparison/
+external_qpu_cache/
 ```
 
 ---
