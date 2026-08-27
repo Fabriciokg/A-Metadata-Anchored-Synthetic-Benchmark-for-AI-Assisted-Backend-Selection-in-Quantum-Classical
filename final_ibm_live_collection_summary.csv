@@ -1,2 +1,0 @@
-frozen_snapshot_date,live_collection_rows,frozen_rows,common_backend_count,live_collection_timestamp_min,live_collection_timestamp_max,credential_values_persisted,hardware_jobs_submitted_by_this_section
-2026-07-28,3,3,3,2026-08-26T18:40:03.487141+00:00,2026-08-26T18:40:04.566156+00:00,False,False
