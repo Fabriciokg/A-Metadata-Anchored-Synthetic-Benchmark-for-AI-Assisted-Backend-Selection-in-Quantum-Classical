@@ -1,0 +1,3 @@
+model,target,evaluation,MAE,RMSE,R2
+RandomForestRegressor,total_runtime_sec,holdout_group_split,31.627512099206122,47.434889874391764,0.9929812387956964
+RandomForestRegressor,expected_fidelity,holdout_group_split,0.028509006750914702,0.04160064843577663,0.9524285094500389
