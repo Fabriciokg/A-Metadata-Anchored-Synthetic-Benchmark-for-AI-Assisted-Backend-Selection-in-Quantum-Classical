@@ -1,2 +1,0 @@
-circuit,num_qubits,original_depth,transpiled_depth,original_size,transpiled_size,two_qubit_gates,num_outcomes,runtime_sec,top_outcome,top_outcome_probability,ops,status,source
-not_run,,,,,,,,,,,{},qiskit_or_aer_unavailable,qiskit_aer_local_simulator
