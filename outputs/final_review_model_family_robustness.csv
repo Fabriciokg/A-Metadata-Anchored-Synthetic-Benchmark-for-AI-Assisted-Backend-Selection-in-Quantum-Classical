@@ -1,4 +1,0 @@
-model,evaluation,Accuracy,Precision,Recall,F1
-Gradient Boosting,OOF_train_and_predicted_test_runtime_fidelity,0.6928571428571428,0.6033519553072626,0.7474048442906575,0.6676970633693973
-Logistic Regression,OOF_train_and_predicted_test_runtime_fidelity,0.6657142857142857,0.5669099756690997,0.8062283737024222,0.6657142857142857
-Random Forest,OOF_train_and_predicted_test_runtime_fidelity,0.6814285714285714,0.5896739130434783,0.7508650519031141,0.6605783866057838
