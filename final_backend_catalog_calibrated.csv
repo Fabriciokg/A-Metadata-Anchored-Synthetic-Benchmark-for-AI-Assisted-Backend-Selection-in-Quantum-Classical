@@ -1,0 +1,6 @@
+backend,backend_family,qpu_modality,native_strength,base_availability,base_cost_per_shot,speed_factor,max_effective_qubits,supports_real_hardware,base_single_qubit_error,base_two_qubit_error,base_readout_error,base_coupling_density,generation_anchor_source,generation_anchor_alpha,generation_anchor_n,base_t1_us,base_t2_us,base_queue_depth
+statevector_sim,simulator,not_applicable,small_medium_exact,0.96,1e-05,1.15,34,0,5e-05,0.0001,0.0001,1.0,synthetic_default,0.0,0,1000000000.0,1000000000.0,0.0
+tensor_network_sim,simulator,not_applicable,structured_low_entanglement,0.92,3e-05,0.78,90,0,0.0002,0.0006,0.0002,0.8,synthetic_default,0.0,0,1000000000.0,1000000000.0,0.0
+noisy_sim,simulator,not_applicable,noise_experiments,0.88,5e-05,1.0,56,0,0.0015,0.009,0.015,0.7,synthetic_default,0.0,0,1000000000.0,1000000000.0,0.0
+qpu_cloud_superconducting,qpu,superconducting,fast_hardware_sampling,0.7544,0.00085,1.55,78,1,0.0007995,0.00944655,0.01770505,0.18255065,ibm_qiskit_runtime_frozen_public_snapshot,0.45,3,124.4314827,76.83976015,135.0
+qpu_cloud_iontrap,qpu,iontrap,high_connectivity_hardware,0.68,0.0013,1.9,36,1,0.0008,0.01,0.018,0.95,no_modality_specific_anchor::iontrap,0.0,0,800000.0,650000.0,11.0

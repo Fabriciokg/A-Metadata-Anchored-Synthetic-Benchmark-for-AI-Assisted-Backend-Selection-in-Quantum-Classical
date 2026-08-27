@@ -1,0 +1,2 @@
+range_overlap_metrics_pct,metrics_with_external_reference,metrics_without_external_reference,mean_synthetic_within_reference_range_pct,diagnostic_type,inference_scope,anchor_evidence_scope,live_ibm_runtime_available,recommended_claim
+25.0,8,8,32.46428571428571,external_range_overlap_plausibility,descriptive_metadata_level_only,live_ibm_qiskit_runtime_metadata,True,"partial range-overlap with current-run IBM/Qiskit Runtime metadata; metadata-level plausibility diagnostic only, not production-QPU validation"

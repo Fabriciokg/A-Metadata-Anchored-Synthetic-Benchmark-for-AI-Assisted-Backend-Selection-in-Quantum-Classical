@@ -1,0 +1,10 @@
+feature_set,information_regime,explicit_policy_weights,oracle_runtime_fidelity,n_features,Accuracy,Precision,Recall,F1
+full_oracle_observed_runtime_fidelity,oracle_observed_runtime_fidelity,False,True,34,0.6857142857142857,0.5924932975871313,0.7647058823529411,0.6676737160120846
+full_oof_predicted_runtime_fidelity,OOF_train_predicted_test,False,False,34,0.6828571428571428,0.592797783933518,0.740484429065744,0.6584615384615384
+operational_state_only,observed_operational_covariates,False,False,10,0.6571428571428571,0.573134328358209,0.6643598615916955,0.6153846153846154
+backend_static_only,observed_non_target_features,False,False,10,0.6371428571428571,0.5522388059701493,0.6401384083044983,0.592948717948718
+oof_predicted_performance_only,OOF_train_predicted_test,False,False,2,0.6185714285714285,0.5369127516778524,0.5536332179930796,0.545144804088586
+oracle_observed_performance_only,oracle_observed_synthetic_targets,False,True,2,0.6014285714285714,0.5159235668789809,0.5605536332179931,0.5373134328358209
+explicit_policy_weights_only,explicit_synthetic_policy_weights,True,False,7,0.5785714285714286,0.4863636363636364,0.370242214532872,0.4204322200392927
+decision_profile_id_only,profile_identifier_only,False,False,1,0.5785714285714286,0.4863636363636364,0.370242214532872,0.4204322200392927
+workload_only,observed_non_target_features,False,False,13,0.5328571428571428,0.41739130434782606,0.33217993079584773,0.3699421965317919
